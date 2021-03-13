@@ -2,14 +2,14 @@
 ## A mobile-first application for storing contact information and notes.
 
 ### What is this?
-This is a web application designed to run on your phone.  With this app, you may add new contacts to a contact list, then call them from the application itself.
+This is a web application designed to run on your phone.  With this app, you may add new contacts to a contact list, then call them from the application itself.  [Try it for yourself](https://slothwerks-studio.github.io/contact-list/)!
 
 ### Why did you build this?
 This public repository was built to teach the basic fundamentals of using JavaScript to add functionality to a web application.
 
 ### How do I check out the code?
 
-#### File Download
+#### File download
 The easiest method is to simply download the files to your computer.
 
 - Click on the code download button on this repo and select Download ZIP.
