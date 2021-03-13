@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="A mobile-first application for storing contact information and notes." />
+    <title>My Contacts</title>
+  </head>
+
+  <body>
+
+    <header>
+      <h1>
+        My Contacts
+      </h1>
+    </header>
+
+    <main>
+
+      <section>
+
+        <h2>
+          Add a Contact
+        </h2>
+
+        <form>
+          <div>
+            <label for="name">
+              Name
+            </label>
+            <input
+              name="name"
+              type="text"
+              id="nameInput"
+              placeholder="Contact name"
+            />
+          </div>
+          <div>
+            <label for="phone">
+              Phone
+            </label>
+            <input
+              name="phone"
+              type="text"
+              id="phoneInput"
+              placeholder="Contact phone (numbers only)"
+            />
+          </div>
+          <button type="submit" id="addContactButton">
+            Add Contact
+          </button>
+        </form>
+
+      </section>
+
+      <section>
+
+        <h2>
+          Contact List
+        </h2>
+
+        <div id="contactList">
+
+        </div>
+        
+      </section>
+
+    </main>
+
+  </body>
+
+</html>
