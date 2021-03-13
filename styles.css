@@ -52,3 +52,17 @@ button {
   border: 1px solid #d46b29;
 }
 
+#contact-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-link {
+  font-weight: bold;
+  color: #d46b29;
+  margin-bottom: 20px;
+}
+
+
+
