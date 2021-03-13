@@ -5,6 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="A mobile-first application for storing contact information and notes." />
+    <!-- 
+      Add Google Fonts to project
+      https://developers.google.com/fonts/docs/getting_started
+    -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
     <link rel="stylesheet" href="styles.css" />
     <title>My Contacts</title>
   </head>
@@ -26,31 +31,33 @@
         </h2>
 
         <form>
-          <div>
+          <div class="input-wrapper">
             <label for="name">
               Name
             </label>
             <input
               name="name"
               type="text"
-              id="nameInput"
+              id="name-input"
               placeholder="Contact name"
             />
           </div>
-          <div>
+          <div class="input-wrapper">
             <label for="phone">
               Phone
             </label>
             <input
               name="phone"
               type="text"
-              id="phoneInput"
+              id="phone-input"
               placeholder="Contact phone (numbers only)"
             />
           </div>
-          <button type="submit" id="addContactButton">
-            Add Contact
-          </button>
+          <div class="button-wrapper">
+            <button type="submit" id="add-contact-button">
+              Add Contact
+            </button>
+          </div>
         </form>
 
       </section>
@@ -61,7 +68,7 @@
           Contact List
         </h2>
 
-        <div id="contactList">
+        <div id="contact-list">
 
         </div>
 
