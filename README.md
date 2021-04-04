@@ -30,7 +30,8 @@ So...
 
 When working with git, you'll want to get comfortable using a terminal program such as [zsh for Mac](https://www.howtogeek.com/682770/how-to-open-the-terminal-on-a-mac/) or [PowerShell for Windows](https://www.howtogeek.com/662611/9-ways-to-open-powershell-in-windows-10/).  This will allow you to run the commands necessary to complete the above steps.
 
-Git itself is a software that you'll need to install in order to perform git commands within the terminal.  [Here are instructions to do just that.](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+Git itself is a software that you'll need to install in order to perform git commands within the terminal.  [Here are instructions to do just that.](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)  Once git is installed, you will also want to [set your GitHub username and password](https://docs.github.com/en/github/getting-started-with-github/setting-your-username-in-git) in order to interact with your GitHub account from the terminal.
+
 ### How do I play with the code on my own computer?
 Well, you'll want to install a nifty programming application such as [Visual Studio Code](https://code.visualstudio.com/).
 
