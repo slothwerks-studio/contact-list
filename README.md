@@ -1,5 +1,6 @@
 # My Contacts
 ## A mobile-first application for storing contact information and notes.
+## Brought to you by Sloth!
 
 ### What is this?
 This is a web application designed to run on your phone.  With this app, you may add new contacts to a contact list, then call them from the application itself by selecting the name of the contact in the list.  [Try it for yourself](https://slothwerks-studio.github.io/contact-list/)!
