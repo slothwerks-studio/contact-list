@@ -44,6 +44,9 @@ input {
 
 button {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.add-contact-button {
   padding: 10px;
   border-radius: 5px;
   background-color: #d46b29;
@@ -58,10 +61,23 @@ button {
   align-items: center;
 }
 
+.contact {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
 .contact-link {
   font-weight: bold;
   color: #d46b29;
-  margin-bottom: 20px;
+}
+
+.update-contact-button, .remove-contact-button {
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+  color: #d46b29;
+  padding: 0 0 0 15px;
 }
 
 

@@ -1,5 +1,12 @@
 // Declare variables
-let contacts = []; // An array of objects
+let contacts = [
+  // Seed with sample contact object
+  {
+    id: 0,
+    name: "SlothWerks",
+    phone: "6162586179"
+  }
+]; // An array of objects
 let currentId = 1; // We'll use this to add ID's to our contacts
 // TODO: Implement unique UUID v4 ID's
 
@@ -46,15 +53,24 @@ function refreshContacts() {
   // Loop through the contacts array and add a contact to
   // the contact list for each object stored
   contacts.forEach(function (contact) {
-    // Create a new anchor element
-    const anchorElement = document.createElement("a");
-    // Add href for telephone number
-    anchorElement.href = `tel:+1${contact.phone}`;
-    // Add a CSS class to the element
-    anchorElement.classList.add("contact-link");
-    // Add content for the element
-    anchorElement.innerText = contact.name;
+    // Create a new element for contact
+    const contactElement = document.createElement("div");
+    // Add class to contact element
+    contactElement.classList.add("contact");
+    // Build HTML for contact
+    contactElement.innerHTML = `
+      <a class="contact-link" href="tel:+1${contact.phone}">${contact.name}</a>
+      <button class="update-contact-button">
+        [update]
+      </button>
+      <button class="remove-contact-button">
+        [remove]
+      </button>
+    `;
     // Add the element to the contact list DIV
-    contactList.appendChild(anchorElement);
+    contactList.appendChild(contactElement);
   });
 }
+
+// Update contacts in UI on load
+refreshContacts();
