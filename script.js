@@ -1,5 +1,7 @@
 // Declare variables
 let contacts = []; // An array of objects
+let currentId = 1; // We'll use this to add ID's to our contacts
+// TODO: Implement unique UUID v4 ID's
 
 // Create references to HTML elements
 const nameInput = document.getElementById("name-input");
@@ -19,11 +21,13 @@ function handleAddContactButton(event) {
   // and add it to the contacts array
   if (nameInput.value && phoneInput.value) {
     const newContact = {
-      // TODO: We'll likely want a unique ID for this contact.
+      id: currentId,
       name: nameInput.value,
       phone: phoneInput.value
     };
     contacts.push(newContact);
+    // Increment currentId
+    currentId++;
     // Refresh contacts in the UI
     refreshContacts();
   } else {
