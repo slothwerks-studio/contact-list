@@ -156,36 +156,49 @@ function refreshContacts() {
   // Wipe out existing elements
   // (never fear; we're rebuilding it from scratch here)
   contactList.innerHTML = "";
-  // Loop through the contacts array and add a contact to
-  // the contact list for each object stored
-  contacts.forEach(function (contact) {
-    // Create a new element for contact
-    const contactElement = document.createElement("div");
+  // If contacts exist, update UI with data from contact array
+  // Otherwise display appropriate message
+  if (contacts.length > 0) {
+    // Loop through the contacts array and add a contact to
+    // the contact list for each object stored
+    contacts.forEach(function (contact) {
+      // Create a new element for contact
+      const contactElement = document.createElement("div");
+      // Add class to contact element
+      contactElement.classList.add("contact");
+      // Add ID to contact element
+      contactElement.id = contact.id;
+      // Build HTML for contact
+      contactElement.innerHTML = `
+        <a class="contact-link" href="tel:+1${contact.phone}">${contact.name}</a>
+        <button 
+          type="button"
+          class="contact-option-button"
+          onclick="handleUpdateContact(${contact.id})"
+        >
+          [update]
+        </button>
+        <button 
+          type="button"
+          class="contact-option-button"
+          onclick="handleRemoveContact(${contact.id})"
+        >
+          [remove]
+        </button>
+      `;
+      // Add the element to the contact list DIV
+      contactList.appendChild(contactElement);
+    });
+  } else {
+    // Create a new element for contact list
+    const listMessage = document.createElement("p");
     // Add class to contact element
-    contactElement.classList.add("contact");
-    // Add ID to contact element
-    contactElement.id = contact.id;
-    // Build HTML for contact
-    contactElement.innerHTML = `
-      <a class="contact-link" href="tel:+1${contact.phone}">${contact.name}</a>
-      <button 
-        type="button"
-        class="contact-option-button"
-        onclick="handleUpdateContact(${contact.id})"
-      >
-        [update]
-      </button>
-      <button 
-        type="button"
-        class="contact-option-button"
-        onclick="handleRemoveContact(${contact.id})"
-      >
-        [remove]
-      </button>
-    `;
+    listMessage.classList.add("list-message");
+    // Build content for message
+    listMessage.innerText = "You have no contacts.";
     // Add the element to the contact list DIV
-    contactList.appendChild(contactElement);
-  });
+    contactList.appendChild(listMessage);
+  }
 }
 
 // Update UI on load
