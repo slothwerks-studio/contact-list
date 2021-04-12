@@ -7,6 +7,16 @@ h1, h2 {
   text-align: center;
 }
 
+h1 {
+  margin-bottom: 0;
+}
+
+.version-number {
+  text-align: center;
+  margin: 0 0 20px 0;
+  font-size: .85rem;
+}
+
 main {
   box-sizing: border-box;
   max-width: 320px;
