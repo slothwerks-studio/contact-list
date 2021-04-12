@@ -42,6 +42,30 @@ function handleAddContactButton(event) {
   }
 }
 
+// Build an onclick handler for the remove contact button
+function handleRemoveContactButton(id) {
+  console.log("Remove the following contact ID:", id);
+  // Find contact in contact list
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+  const contact = contacts.find((contact) => {
+    // Return the contact with the ID matching the selected contact ID
+    return contact.id === id;
+  });
+  if (confirm(`Are you sure you want to remove ${contact.name} from your contact list?`)) {
+    // Build new contact list using filter
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+    const newContacts = contacts.filter((contact) => {
+      // If the contact ID does *not* match the selected ID,
+      // add it to a new contacts array
+      return contact.id !== id;
+    });
+    // Update the contacts array
+    contacts = newContacts;
+    // Refresh contacts in the UI
+    refreshContacts();
+  }
+}
+
 // Add the handler to the Add Contact button onclick
 addContactButton.onclick = handleAddContactButton;
 
@@ -57,13 +81,22 @@ function refreshContacts() {
     const contactElement = document.createElement("div");
     // Add class to contact element
     contactElement.classList.add("contact");
+    // Add ID to contact element
+    contactElement.id = contact.id;
     // Build HTML for contact
     contactElement.innerHTML = `
       <a class="contact-link" href="tel:+1${contact.phone}">${contact.name}</a>
-      <button class="update-contact-button">
+      <button 
+        type="button"
+        class="update-contact-button"
+      >
         [update]
       </button>
-      <button class="remove-contact-button">
+      <button 
+        type="button"
+        class="remove-contact-button"
+        onClick="handleRemoveContactButton(${contact.id})"
+      >
         [remove]
       </button>
     `;
