@@ -7,35 +7,38 @@ let contacts = [
     phone: "6162586179"
   }
 ]; // An array of objects
-let currentId = 1; // We'll use this to add ID's to our contacts
+let newContactId = 1; // We'll use this to add ID's to our contacts
 // TODO: Implement unique UUID v4 ID's
+let formMode = "Add"; // "Add", "Update"
+let contactToEdit = null;
 
 // Create references to HTML elements
 const contactForm = document.getElementById("contact-form");
+const formHeading = document.getElementById("form-heading");
 const nameInput = document.getElementById("name-input");
 const phoneInput = document.getElementById("phone-input");
-const addContactButton = document.getElementById("add-contact-button");
+const submitButton = document.getElementById("submit-button");
 const contactList = document.getElementById("contact-list"); // A DIV element
 
-// Build an onclick handler for the add contact button
+// Build an onclick handler for the form submission
 // As an onclick handler, this function by default takes an event object
 // as an argument; we'll want to prevent the automatic refresh of the
 // application due to form submission
 // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
-function handleAddContactButton(event) {
+function handleFormSubmit(event) {
   // Prevent refresh
   event.preventDefault();
   // Check for user input; if input exists, build a new contact object
   // and add it to the contacts array
   if (nameInput.value && phoneInput.value) {
     const newContact = {
-      id: currentId,
+      id: newContactId,
       name: nameInput.value,
       phone: phoneInput.value
     };
     contacts.push(newContact);
-    // Increment currentId
-    currentId++;
+    // Increment newContactId
+    newContactId++;
     // Clear form
     contactForm.reset();
     // Refresh contacts in the UI
@@ -45,9 +48,11 @@ function handleAddContactButton(event) {
   }
 }
 
+// Add handler to form
+contactForm.onsubmit = handleFormSubmit;
+
 // Build an onclick handler for the remove contact button
-function handleRemoveContactButton(id) {
-  console.log("Remove the following contact ID:", id);
+function handleRemoveContact(id) {
   // Find contact in contact list
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
   const contact = contacts.find((contact) => {
@@ -69,8 +74,14 @@ function handleRemoveContactButton(id) {
   }
 }
 
-// Add the handler to the Add Contact button onclick
-addContactButton.onclick = handleAddContactButton;
+// Build a function that will update the UI
+// based on the current mode
+function updateMode() {
+  // Update contact form labels
+  const label = `${formMode} Contact`;
+  formHeading.innerText = label;
+  submitButton.innerText = label;
+}
 
 // Build a function that refreshes the contact list in the UI
 function refreshContacts() {
@@ -98,7 +109,7 @@ function refreshContacts() {
       <button 
         type="button"
         class="remove-contact-button"
-        onClick="handleRemoveContactButton(${contact.id})"
+        onClick="handleRemoveContact(${contact.id})"
       >
         [remove]
       </button>
@@ -108,5 +119,6 @@ function refreshContacts() {
   });
 }
 
-// Update contacts in UI on load
+// Update UI on load
+updateMode();
 refreshContacts();

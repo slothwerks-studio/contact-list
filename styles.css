@@ -46,7 +46,7 @@ button {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
-.add-contact-button {
+#submit-button {
   padding: 10px;
   border-radius: 5px;
   background-color: #d46b29;
