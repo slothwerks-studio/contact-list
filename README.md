@@ -32,6 +32,8 @@ When working with git, you'll want to get comfortable using a terminal program s
 
 Git itself is a software that you'll need to [download and install](https://git-scm.com/downloads) in order to perform git commands within the terminal.  Once git is installed, you will also want to [set up authentication for GitHub](https://docs.github.com/en/github/getting-started-with-github/set-up-git) in order to interact with your GitHub account from the terminal.
 
+(Looking for help with this?  Sloth led us through an intoduction to git in a previous workshop; [the video of his presentation is available on Facebook](https://www.facebook.com/182139175163955/videos/852495475371824).)
+
 ### How do I play with the code on my own computer?
 Well, you'll want to install a nifty programming application such as [Visual Studio Code](https://code.visualstudio.com/).
 
@@ -47,6 +49,6 @@ Well, you'll want to install a nifty programming application such as [Visual Stu
 We got your back!  Sloth discussed the basic concepts of JavaScript and walked through the initial code at [GRWebDev](https://www.meetup.com/grwebdev/) in March of 2021.  You can check out the [video of his presentation](https://www.facebook.com/182139175163955/videos/455547239117005) on Facebook.  We will continue to work on the code throughout a number of events sponsored by GRWebDev and [SlothWerks](https://slothwerks.com/).
 
 ### This application seems kinda lame.
-Well, that's because we haven't made many changes to it yet.  Let's work together to add new features and improve the app!
+Well, you should work with us to make updates to it!  Join Sloth and fellow creatives in West Michigan as we work together to add features and improve the application.  You can check out the latest "Code with Sloth" workshops on [GRWebDev's Meetup page](https://www.meetup.com/grwebdev/).  A [public Trello board](https://trello.com/b/0TmiXJ08/contact-list-app) is available with future topics and planned updates to the app.
 
 

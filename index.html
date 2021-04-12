@@ -20,17 +20,20 @@
       <h1>
         My Contacts
       </h1>
+      <p class="version-number">
+        ver. 0.2.0
+      </p>
     </header>
 
     <main>
 
       <section>
 
-        <h2>
-          Add a Contact
+        <h2 id="form-heading">
+          <!-- Heading content determined by JS -->
         </h2>
 
-        <form>
+        <form id="contact-form">
           <div class="input-wrapper">
             <label for="name">
               Name
@@ -54,8 +57,17 @@
             />
           </div>
           <div class="button-wrapper">
-            <button type="submit" id="add-contact-button">
-              Add Contact
+            <button 
+              id="submit-button" 
+              type="submit"
+            >
+              <!-- Button content determined by JS -->
+            </button>
+            <button
+              id="cancel-button"
+              type="button"
+            >
+              Cancel
             </button>
           </div>
         </form>

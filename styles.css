@@ -7,6 +7,16 @@ h1, h2 {
   text-align: center;
 }
 
+h1 {
+  margin-bottom: 0;
+}
+
+.version-number {
+  text-align: center;
+  margin: 0 0 20px 0;
+  font-size: .85rem;
+}
+
 main {
   box-sizing: border-box;
   max-width: 320px;
@@ -44,12 +54,24 @@ input {
 
 button {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+#submit-button, #cancel-button {
   padding: 10px;
   border-radius: 5px;
-  background-color: #d46b29;
   color: white;
   font-size: 1rem;
+}
+
+#submit-button {
+  background-color: #d46b29;
   border: 1px solid #d46b29;
+}
+
+#cancel-button {
+  margin-top: 10px;
+  background-color: #000000;
+  border: 1px solid #000000;
 }
 
 #contact-list {
@@ -58,10 +80,29 @@ button {
   align-items: center;
 }
 
+.contact {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
 .contact-link {
   font-weight: bold;
   color: #d46b29;
-  margin-bottom: 20px;
+}
+
+.contact-option-button {
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+  color: #d46b29;
+  padding: 0;
+  padding: 2px;
+  margin-left: 15px;
+}
+
+.hidden {
+  display: none;
 }
 
 
