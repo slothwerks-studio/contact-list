@@ -46,6 +46,6 @@ Well, you'll want to install a nifty programming application such as [Visual Stu
 We got your back!  Sloth discussed the basic concepts of JavaScript and walked through the initial code at [GRWebDev](https://www.meetup.com/grwebdev/) in March of 2021.  You can check out the [video of his presentation](https://www.facebook.com/182139175163955/videos/455547239117005) on Facebook.  We will continue to work on the code throughout a number of events sponsored by GRWebDev and [SlothWerks](https://slothwerks.com/).
 
 ### This application seems kinda lame.
-Well, you should work with us to make updates to it!  Join Sloth and fellow creatives in West Michigan as we work together to add features and improve the application.  You can check out the latest "Code with Sloth" workshops on [GRWebDev's Meetup page](https://www.meetup.com/grwebdev/).
+Well, you should work with us to make updates to it!  Join Sloth and fellow creatives in West Michigan as we work together to add features and improve the application.  You can check out the latest "Code with Sloth" workshops on [GRWebDev's Meetup page](https://www.meetup.com/grwebdev/).  A [public Trello board](https://trello.com/b/0TmiXJ08/contact-list-app) is available with future topics and planned updates to the app.
 
 
