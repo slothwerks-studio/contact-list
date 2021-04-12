@@ -46,13 +46,22 @@ button {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
-#submit-button {
+#submit-button, #cancel-button {
   padding: 10px;
   border-radius: 5px;
-  background-color: #d46b29;
   color: white;
   font-size: 1rem;
+}
+
+#submit-button {
+  background-color: #d46b29;
   border: 1px solid #d46b29;
+}
+
+#cancel-button {
+  margin-top: 10px;
+  background-color: #000000;
+  border: 1px solid #000000;
 }
 
 #contact-list {
@@ -72,12 +81,18 @@ button {
   color: #d46b29;
 }
 
-.update-contact-button, .remove-contact-button {
+.contact-option-button {
   border: none;
   background-color: transparent;
   font-weight: bold;
   color: #d46b29;
-  padding: 0 0 0 15px;
+  padding: 0;
+  padding: 2px;
+  margin-left: 15px;
+}
+
+.hidden {
+  display: none;
 }
 
 
