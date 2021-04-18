@@ -84,6 +84,13 @@ function handleCancel() {
   contactToEdit = null;
   // Update form mode
   formMode = "Add";
+  // Clear form
+  contactForm.reset();
+  // If inputs are currently focused, unfocus them
+  nameInput.blur();
+  phoneInput.blur();
+  // Refresh UI
+  refreshMode();
 }
 
 // Add handlers to form
