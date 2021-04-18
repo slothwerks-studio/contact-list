@@ -7,7 +7,7 @@ let contactToEdit = null; // Stores the contact object to be edited
 
 // Create a function that will load data from localStorage
 function retrieveLocalStorage () {
-  console.log("Here's the current state of localStorage ", localStorage);
+  console.log("Here's the current state of localStorage: ", localStorage);
   // Retrieve data from storage
   const data1 = localStorage.getItem("contacts");
   const data2 = localStorage.getItem("newContactId");
@@ -27,15 +27,19 @@ function retrieveLocalStorage () {
     ];
     // Set newContactId for next contact
     newContactId = 1;
+    // Sync these changes with localStorage
+    updateLocalStorage();
   } else {
     console.log("Contacts found in local storage: ", contactsInStorage);
+    console.log("newStorageId found in local storage: ", newContactIdInStorage);
     // Load contacts in storage into contacts array
     contacts = contactsInStorage;
     // Load newContactId from storage; if it's missing, display error
     if (!newContactIdInStorage) {
       alert("Error loading data.");
     } else {
-      newcontactId = newContactIdInStorage;
+      console.log("Synching newContactId with stored value...");
+      newContactId = newContactIdInStorage;
     }
   }
 }
