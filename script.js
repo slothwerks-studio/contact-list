@@ -1,16 +1,56 @@
 // Declare variables
-let contacts = [
-  // Seed with sample contact object
-  {
-    id: 0,
-    name: "SlothWerks",
-    phone: "6162586179"
-  }
-]; // An array of objects
-let newContactId = 1; // We'll use this to add ID's to our contacts
+let contacts = []; // An array of objects
+let newContactId = 0; // We'll use this to add ID's to our contacts
 // TODO: Implement unique UUID v4 ID's
 let formMode = "Add"; // "Add", "Update"
 let contactToEdit = null; // Stores the contact object to be edited
+
+// Create a function that will load data from localStorage
+function retrieveLocalStorage () {
+  console.log("Here's the current state of localStorage ", localStorage);
+  // Retrieve data from storage
+  const data1 = localStorage.getItem("contacts");
+  const data2 = localStorage.getItem("newContactId");
+  // Parse data using JSON.parse()
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
+  const contactsInStorage = JSON.parse(data1);
+  const newContactIdInStorage = JSON.parse(data2);
+  if (!contactsInStorage) {
+    console.log("No contacts found in local storage.");
+    contacts = [
+      // Seed with sample contact object
+      {
+        id: 0,
+        name: "SlothWerks",
+        phone: "6162586179"
+      }
+    ];
+    // Set newContactId for next contact
+    newContactId = 1;
+  } else {
+    console.log("Contacts found in local storage: ", contactsInStorage);
+    // Load contacts in storage into contacts array
+    contacts = contactsInStorage;
+    // Load newContactId from storage; if it's missing, display error
+    if (!newContactIdInStorage) {
+      alert("Error loading data.");
+    } else {
+      newcontactId = newContactIdInStorage;
+    }
+  }
+}
+
+// Create a function that will update localStorage
+function updateLocalStorage () {
+  // Convert contacts and newContactId to strings using JSN.stringify()
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+  const data1 = JSON.stringify(contacts);
+  const data2 = JSON.stringify(newContactId);
+  // Store the stringified values into localStorage
+  localStorage.setItem("contacts", data1);
+  localStorage.setItem("newContactId", data2);
+  console.log("Updated localStorage: ", localStorage);
+}
 
 // Create references to HTML elements
 const contactForm = document.getElementById("contact-form");
@@ -70,6 +110,8 @@ function handleFormSubmit(event) {
     // If inputs are currently focused, unfocus them
     nameInput.blur();
     phoneInput.blur();
+    // Update localStorage with changes
+    updateLocalStorage();
     // Refresh UI
     refreshMode();
     refreshContacts();
@@ -136,6 +178,8 @@ function handleRemoveContact(id) {
     });
     // Update the contacts array
     contacts = newContacts;
+    // Update localStorage with changes
+    updateLocalStorage();
     // Refresh UI
     refreshContacts();
   }
@@ -206,6 +250,8 @@ function refreshContacts() {
   }
 }
 
-// Update UI on load
+// Load data fron localStorage on load
+retrieveLocalStorage();
+// Refresh UI on load
 refreshMode();
 refreshContacts();
