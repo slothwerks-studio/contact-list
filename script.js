@@ -108,8 +108,6 @@ function handleUpdateContact(id) {
   formMode = "Update";
   // Refresh UI
   refreshMode();
-  // Focus on name input for editing
-  nameInput.focus();
 }
 
 // Build an onclick handler for the remove contact button
