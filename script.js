@@ -10,7 +10,7 @@ let contacts = [
 let newContactId = 1; // We'll use this to add ID's to our contacts
 // TODO: Implement unique UUID v4 ID's
 let formMode = "Add"; // "Add", "Update"
-let contactToEdit = null;
+let contactToEdit = null; // Stores the contact object to be edited
 
 // Create references to HTML elements
 const contactForm = document.getElementById("contact-form");
@@ -53,7 +53,7 @@ function handleFormSubmit(event) {
       };
       // Locate the selected contact in the contacts array
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
-      const contactIndex = contacts.findIndex((contact) => {
+      const contactIndex = contacts.findIndex(function (contact) {
         // Return the index of the contact with the ID matching the selected contact ID
         return contact.id === contactToEdit.id;
       });
@@ -84,6 +84,13 @@ function handleCancel() {
   contactToEdit = null;
   // Update form mode
   formMode = "Add";
+  // Clear form
+  contactForm.reset();
+  // If inputs are currently focused, unfocus them
+  nameInput.blur();
+  phoneInput.blur();
+  // Refresh UI
+  refreshMode();
 }
 
 // Add handlers to form
@@ -95,7 +102,7 @@ cancelButton.onclick = handleCancel;
 function handleUpdateContact(id) {
   // Find contact in contact list
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-  const contact = contacts.find((contact) => {
+  const contact = contacts.find(function (contact) {
     // Return the contact with the ID matching the selected contact ID
     return contact.id === id;
   });
@@ -108,8 +115,6 @@ function handleUpdateContact(id) {
   formMode = "Update";
   // Refresh UI
   refreshMode();
-  // Focus on name input for editing
-  nameInput.focus();
 }
 
 // Build an onclick handler for the remove contact button
@@ -117,14 +122,14 @@ function handleUpdateContact(id) {
 function handleRemoveContact(id) {
   // Find contact in contact list
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-  const contact = contacts.find((contact) => {
+  const contact = contacts.find(function (contact) {
     // Return the contact with the ID matching the selected contact ID
     return contact.id === id;
   });
   if (confirm(`Are you sure you want to remove ${contact.name} from your contact list?`)) {
     // Build new contact list using filter
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-    const newContacts = contacts.filter((contact) => {
+    const newContacts = contacts.filter(function (contact) {
       // If the contact ID does *not* match the selected ID,
       // add it to a new contacts array
       return contact.id !== id;
