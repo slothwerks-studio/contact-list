@@ -1,7 +1,5 @@
 // Declare variables
 let contacts = []; // An array of objects
-let newContactId = 0; // We'll use this to add ID's to our contacts
-// TODO: Implement unique UUID v4 ID's
 let formMode = "Add"; // "Add", "Update"
 let contactToEdit = null; // Stores the contact object to be edited
 
@@ -9,50 +7,36 @@ let contactToEdit = null; // Stores the contact object to be edited
 function retrieveLocalStorage () {
   console.log("Here's the current state of localStorage: ", localStorage);
   // Retrieve data from storage
-  const data1 = localStorage.getItem("contacts");
-  const data2 = localStorage.getItem("newContactId");
+  const stringifiedContacts = localStorage.getItem("contacts");
   // Parse data using JSON.parse()
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
-  const contactsInStorage = JSON.parse(data1);
-  const newContactIdInStorage = JSON.parse(data2);
+  const contactsInStorage = JSON.parse(stringifiedContacts);
   if (!contactsInStorage) {
     console.log("No contacts found in local storage.");
     contacts = [
       // Seed with sample contact object
       {
-        id: 0,
+        id: uuid(), // Add unique identifier
         name: "SlothWerks",
         phone: "6162586179"
       }
     ];
-    // Set newContactId for next contact
-    newContactId = 1;
     // Sync these changes with localStorage
     updateLocalStorage();
   } else {
     console.log("Contacts found in local storage: ", contactsInStorage);
-    console.log("newStorageId found in local storage: ", newContactIdInStorage);
     // Load contacts in storage into contacts array
     contacts = contactsInStorage;
-    // Load newContactId from storage; if it's missing, display error
-    if (!newContactIdInStorage) {
-      alert("Error loading data.");
-    } else {
-      console.log("Synching newContactId with stored value...");
-      newContactId = newContactIdInStorage;
-    }
   }
 }
 
 // Create a function that will update localStorage
 function updateLocalStorage () {
-  // Convert contacts and newContactId to strings using JSN.stringify()
+  // Convert contacts array to string using JSON.stringify()
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
-  const data1 = JSON.stringify(contacts);
-  const data2 = JSON.stringify(newContactId);
+  const stringifiedContacts = JSON.stringify(contacts);
   // Store the stringified values into localStorage
-  localStorage.setItem("contacts", data1);
-  localStorage.setItem("newContactId", data2);
+  localStorage.setItem("contacts", stringifiedContacts);
   console.log("Updated localStorage: ", localStorage);
 }
 
@@ -80,14 +64,12 @@ function handleFormSubmit(event) {
     if (formMode === "Add") {
       // Build new contact object
       const newContact = {
-        id: newContactId,
+        id: uuid(), // Add unique identifier
         name: nameInput.value,
         phone: phoneInput.value
       };
       // Add new contact to contacts array
       contacts.push(newContact);
-      // Increment newContactId
-      newContactId++;
     } else if (formMode === "Update") {
       // Build updated object
       const updatedContact = {
@@ -252,6 +234,19 @@ function refreshContacts() {
     // Add the element to the contact list DIV
     contactList.appendChild(listMessage);
   }
+}
+
+// Build function to generate unique identifiers (UUID)
+// https://en.wikipedia.org/wiki/Universally_unique_identifier
+// https://www.w3resource.com/javascript-exercises/javascript-math-exercise-23.php
+function uuid(){
+  let dt = new Date().getTime();
+  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (dt + Math.random()*16)%16 | 0;
+    dt = Math.floor(dt/16);
+    return (c == 'x' ? r :(r&0x3|0x8)).toString(16);
+  });
+  return uuid;
 }
 
 // Load data fron localStorage on load
