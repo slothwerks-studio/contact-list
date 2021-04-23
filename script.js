@@ -5,7 +5,6 @@ let contactToEdit = null; // Stores the contact object to be edited
 
 // Create a function that will load data from localStorage
 function retrieveLocalStorage () {
-  console.log("Here's the current state of localStorage: ", localStorage);
   // Retrieve data from storage
   const stringifiedContacts = localStorage.getItem("contacts");
   // Parse data using JSON.parse()
@@ -24,7 +23,6 @@ function retrieveLocalStorage () {
     // Sync these changes with localStorage
     updateLocalStorage();
   } else {
-    console.log("Contacts found in local storage: ", contactsInStorage);
     // Load contacts in storage into contacts array
     contacts = contactsInStorage;
   }
@@ -37,7 +35,6 @@ function updateLocalStorage () {
   const stringifiedContacts = JSON.stringify(contacts);
   // Store the stringified values into localStorage
   localStorage.setItem("contacts", stringifiedContacts);
-  console.log("Updated localStorage: ", localStorage);
 }
 
 // Create references to HTML elements
@@ -209,14 +206,14 @@ function refreshContacts() {
         <button 
           type="button"
           class="contact-option-button"
-          onclick="handleUpdateContact(${contact.id})"
+          onclick="handleUpdateContact('${contact.id}')"
         >
           [update]
         </button>
         <button 
           type="button"
           class="contact-option-button"
-          onclick="handleRemoveContact(${contact.id})"
+          onclick="handleRemoveContact('${contact.id}')"
         >
           [remove]
         </button>
