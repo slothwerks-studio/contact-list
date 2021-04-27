@@ -246,6 +246,31 @@ function uuid(){
   return uuid;
 }
 
+
+//Function used to search when using the search bar
+function keyupFunction(searchInput) {
+  //taking the Input and putting it all the lowerCase so the search engine is not case sensitive
+  searchInput=searchInput.value.toLowerCase();
+  // Function that changes the data to lowerCase and then finds the data that matches
+  var filteredContacts = contacts.filter((contacts) => {
+    return (
+      contacts.name.toLowerCase().includes(searchInput) ||
+      contacts.phone.includes(searchInput)
+    );
+  });
+    // running it through a function that will display the found data
+    displayFoundContacts(filteredContacts)
+  }
+
+
+//Function used to display the search results 
+function displayFoundContacts(filteredContacts) {
+    contacts = filteredContacts;
+    refreshContacts() 
+  
+  }
+
+
 // Load data fron localStorage on load
 retrieveLocalStorage();
 // Refresh UI on load
