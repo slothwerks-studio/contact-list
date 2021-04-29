@@ -56,7 +56,7 @@ function handleFormSubmit(event) {
   event.preventDefault();
   // Check for user input; if no input, display alert
   // Otherwise move forward with contact processing
-  if (nameInput.value && phoneInput.value) {
+  if (nameInput.value.trim() && phoneInput.value.trim()) {
     // Process contact based on mode
     if (formMode === "Add") {
       // Build new contact object
