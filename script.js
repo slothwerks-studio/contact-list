@@ -247,10 +247,10 @@ function uuid(){
 }
 
 
-//Function used to search when using the search bar
-function keyupFunction(searchInput) {
+//Function used to search when using the search bar, using 'oninput' because it works on change events (so you can copy and paste, etc!)
+function onInputFunction(searchInput) {
   //taking the Input and putting it all the lowerCase so the search engine is not case sensitive
-  searchInput=searchInput.value.toLowerCase();
+  var searchInput=searchInput.value.toLowerCase();
   // Function that changes the data to lowerCase and then finds the data that matches
   var filteredContacts = contacts.filter((contacts) => {
     return (
@@ -259,7 +259,9 @@ function keyupFunction(searchInput) {
     );
   });
     // running it through a function that will display the found data
-    displayFoundContacts(filteredContacts)
+    displayFoundContacts(filteredContacts);
+    console.log(searchInput);
+    console.log(filteredContacts);
   }
 
 
@@ -267,7 +269,6 @@ function keyupFunction(searchInput) {
 function displayFoundContacts(filteredContacts) {
     contacts = filteredContacts;
     refreshContacts() 
-  
   }
 
 
