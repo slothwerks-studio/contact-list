@@ -11,7 +11,7 @@ h1 {
   margin-bottom: 0;
 }
 
-.version-number {
+.subheading {
   text-align: center;
   margin: 0 0 20px 0;
   font-size: .85rem;
@@ -103,6 +103,14 @@ button {
 
 .hidden {
   display: none;
+}
+
+.dad-joke-heading {
+  margin-bottom: 0;
+}
+
+#dad-joke {
+  text-align: center;
 }
 
 
