@@ -51,4 +51,9 @@ We got your back!  Sloth discussed the basic concepts of JavaScript and walked t
 ### This application seems kinda lame.
 Well, you should work with us to make updates to it!  Join Sloth and fellow creatives in West Michigan as we work together to add features and improve the application.  You can check out the latest "Code with Sloth" workshops on [GRWebDev's Meetup page](https://www.meetup.com/grwebdev/).  A [public Trello board](https://trello.com/b/0TmiXJ08/contact-list-app) is available with future topics and planned updates to the app; you can also check out the existing [version history](https://github.com/slothwerks-studio/contact-list/wiki/Version-History) in the repo [wiki](https://github.com/slothwerks-studio/contact-list/wiki).  Join us on the [SlothWerks Slack workgroup](https://join.slack.com/t/slothwerks-studio/shared_invite/zt-6l4946k3-EnOTGy0NAGC664dV7LGynA) for community discussions in the #contact-list-dev channel!
 
-
+### Our development team
+| Name | GitHub | LinkedIn |
+| ---- | ------ | -------- |
+| Sloth I | [slothwerks-studio](https://github.com/slothwerks-studio) | [www.linkedin.com/in/slothwerks/](https://www.linkedin.com/in/slothwerks/) |
+| Mark Haines | [hainesma](https://github.com/hainesma) | [www.linkedin.com/in/hainesma/](https://www.linkedin.com/in/hainesma/) |
+| Kate Datema | [KateDatema](https://github.com/KateDatema) | [www.linkedin.com/in/kate-katelyn-datema-04583772/](https://www.linkedin.com/in/kate-katelyn-datema-04583772/) |
