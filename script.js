@@ -246,8 +246,37 @@ function uuid(){
   return uuid;
 }
 
+// Build a function to fetch a dad joke
+async function getDadJoke() {
+  try {
+    // Attempt to fetch a joke from icanhazdadjoke
+    // https://icanhazdadjoke.com/api
+    const endpoint = "https://icanhazdadjoke.com/";
+    // Build init options for this fetch call
+    // fetch() will default to a GET request
+    const init = {
+      headers: {
+        "Accept" : "application/json" // Required by API
+      }
+    }
+    // Send endpoint and init as arguments to fetch()
+    // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    const response = await fetch(endpoint, init);
+    const data = await response.json();
+    console.log("Here's the data we received:", data);
+    // Display the joke in the app
+    document.getElementById("dad-joke").innerText = data.joke;
+  } catch (error) {
+    // This will occur if a network error occurs
+    console.log("An error occurred: ", error);
+    const noJoke = "We got nothin' funny to say to you today.";
+    document.getElementById("dad-joke").innerText = noJoke;
+  }
+}
+
 // Load data fron localStorage on load
 retrieveLocalStorage();
 // Refresh UI on load
 refreshMode();
 refreshContacts();
+getDadJoke();
