@@ -262,14 +262,18 @@ async function getDadJoke() {
     // Send endpoint and init as arguments to fetch()
     // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
     const response = await fetch(endpoint, init);
-    const data = await response.json();
-    console.log("Here's the data we received:", data);
+    // Retrieve the JSON portion of the HTTP response
+    const data = await response.json(); // Parses the JSON
+    console.log("Here's the joke data we received:", data);
+    // Response will be an object with an id, joke, and status properties
     // Display the joke in the app
     document.getElementById("dad-joke").innerText = data.joke;
   } catch (error) {
     // This will occur if a network error occurs
     console.log("An error occurred: ", error);
+    // Build alternative text if error occurs
     const noJoke = "We got nothin' funny to say to you today.";
+    // Display text in the app
     document.getElementById("dad-joke").innerText = noJoke;
   }
 }
