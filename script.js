@@ -254,23 +254,11 @@ function refreshContacts() {
   }
 }
 
-// Build function to generate unique identifiers (UUID)
-// https://en.wikipedia.org/wiki/Universally_unique_identifier
-// https://www.w3resource.com/javascript-exercises/javascript-math-exercise-23.php
-function uuid(){
-  let dt = new Date().getTime();
-  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    const r = (dt + Math.random()*16)%16 | 0;
-    dt = Math.floor(dt/16);
-    return (c == 'x' ? r :(r&0x3|0x8)).toString(16);
-  });
-  return uuid;
-}
-
 // Build a function to acquire unique identifiers (UUIDs) from uuidgenerator.net
 // https://www.uuidgenerator.net/api
 // This will be an asynchronous function, since we're dealing with an external service
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+// The function will return a valid UUID if successful or false if not
 async function uuidGenerate() {
   try {
     // Define endpoint per API documentation
