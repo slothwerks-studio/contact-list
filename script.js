@@ -246,6 +246,18 @@ function uuid(){
   return uuid;
 }
 
+// Build a function to acquire unique identifiers (UUIDs) from uuidgenerator.net
+// https://www.uuidgenerator.net/api
+// This will be an asynchronous function, since we're dealing with an external service
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+async function uuidGenerate() {
+  try {
+    // Do stuff
+  } catch (error) {
+    // Handle errors
+  }
+}
+
 // Load data fron localStorage on load
 retrieveLocalStorage();
 // Refresh UI on load
