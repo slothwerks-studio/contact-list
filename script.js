@@ -2,9 +2,10 @@
 let contacts = []; // An array of objects
 let formMode = "Add"; // "Add", "Update"
 let contactToEdit = null; // Stores the contact object to be edited
+let apiErrorMessage = "An error occurred when saving updates to the contact list.";
 
 // Create a function that will load data from localStorage
-function retrieveLocalStorage () {
+async function retrieveLocalStorage () {
   // Retrieve data from storage
   const stringifiedContacts = localStorage.getItem("contacts");
   // Parse data using JSON.parse()
@@ -12,20 +13,31 @@ function retrieveLocalStorage () {
   const contactsInStorage = JSON.parse(stringifiedContacts);
   if (!contactsInStorage) {
     console.log("No contacts found in local storage.");
-    contacts = [
-      // Seed with sample contact object
-      {
-        id: uuidGenerate(), // Add unique identifier
-        name: "SlothWerks",
-        phone: "6162586179"
-      }
-    ];
-    // Sync these changes with localStorage
+    // Create an ID for this contact
+    let id = await uuidGenerate();
+    // If successful, add the contact; if not, show error
+    if (id) {
+      contacts = [
+        // Seed with sample contact object
+        {
+          id, // Add unique identifier
+          name: "SlothWerks",
+          phone: "6162586179"
+        }
+      ];
+    } else {
+      alert(apiErrorMessage);
+    }
+    // Sync changes with localStorage
+    // This will either save a seeded contact or an ampty array
     updateLocalStorage();
   } else {
     // Load contacts in storage into contacts array
     contacts = contactsInStorage;
   }
+  // Refresh UI
+  refreshMode();
+  refreshContacts();
 }
 
 // Create a function that will update localStorage
@@ -51,7 +63,7 @@ const contactList = document.getElementById("contact-list"); // A DIV element
 // as an argument; we'll want to prevent the automatic refresh of the
 // application due to form submission
 // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
-function handleFormSubmit(event) {
+async function handleFormSubmit(event) {
   // Prevent refresh
   event.preventDefault();
   // Check for user input; if no input, display alert
@@ -60,13 +72,21 @@ function handleFormSubmit(event) {
     // Process contact based on mode
     if (formMode === "Add") {
       // Build new contact object
-      const newContact = {
-        id: uuidGenerate(), // Add unique identifier
-        name: nameInput.value,
-        phone: phoneInput.value
-      };
-      // Add new contact to contacts array
-      contacts.push(newContact);
+      console.log("Creating a new contact...");
+      // Create an ID for this contact
+      let id = await uuidGenerate();
+      // If successful, add the contact; if not, show error
+      if (id) {
+        const newContact = {
+          id, // Add unique identifier
+          name: nameInput.value,
+          phone: phoneInput.value
+        };
+        // Add new contact to contacts array
+        contacts.push(newContact);
+      } else {
+        alert(apiErrorMessage);
+      }
     } else if (formMode === "Update") {
       // Build updated object
       const updatedContact = {
@@ -185,6 +205,7 @@ function refreshMode() {
 
 // Build a function that refreshes the contact list in the UI
 function refreshContacts() {
+  console.log("Here are the current contacts: ", contacts);
   // Wipe out existing elements
   // (never fear; we're rebuilding it from scratch here)
   contactList.innerHTML = "";
@@ -259,17 +280,15 @@ async function uuidGenerate() {
     const response = await fetch(endpoint);
     // The data within the HTTP response will be text/plain
     // We'll use the text() method to acquire it
-    const uuid = await response.text(); // Should be a string
-    console.log("Here's the generated UUID: ", uuid);
-    return uuid;
+    const data = await response.text(); // Should be a UTF-8 text string
+    throw new Error();
+    // Return the data
+    return data;
   } catch (error) {
-    console.log("An error occurred: ", error);
-    alert("We were unable to generate an ID for this contact.");
+    console.log("An error occurred generating a UUID: ", error);
+    return false;
   }
 }
 
 // Load data fron localStorage on load
 retrieveLocalStorage();
-// Refresh UI on load
-refreshMode();
-refreshContacts();
