@@ -15,7 +15,7 @@ function retrieveLocalStorage () {
     contacts = [
       // Seed with sample contact object
       {
-        id: uuid(), // Add unique identifier
+        id: uuidGenerate(), // Add unique identifier
         name: "SlothWerks",
         phone: "6162586179"
       }
@@ -61,7 +61,7 @@ function handleFormSubmit(event) {
     if (formMode === "Add") {
       // Build new contact object
       const newContact = {
-        id: uuid(), // Add unique identifier
+        id: uuidGenerate(), // Add unique identifier
         name: nameInput.value,
         phone: phoneInput.value
       };
@@ -252,9 +252,19 @@ function uuid(){
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
 async function uuidGenerate() {
   try {
-    // Do stuff
+    // Define endpoint per API documentation
+    const endpoint = "https://www.uuidgenerator.net/api/version4";
+    // Use fetch() to acquire response from endpoint
+    // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    const response = await fetch(endpoint);
+    // The data within the HTTP response will be text/plain
+    // We'll use the text() method to acquire it
+    const uuid = await response.text(); // Should be a string
+    console.log("Here's the generated UUID: ", uuid);
+    return uuid;
   } catch (error) {
-    // Handle errors
+    console.log("An error occurred: ", error);
+    alert("We were unable to generate an ID for this contact.");
   }
 }
 
