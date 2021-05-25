@@ -51,7 +51,7 @@
             </label>
             <input
               name="phone"
-              type="text"
+              type="number"
               id="phone-input"
               placeholder="Contact phone (numbers only)"
             />
@@ -74,12 +74,23 @@
 
       </section>
 
-      <section>
 
-        <h2>
-          Contact List
-        </h2>
+          <!-- Addding in search (April 27, kate datema)-->
+          <form id="contact-search-form">
+            <div class="input-wrapper">
+              <label for="search">
+                Search
+              </label>
+              <input
+                name="search"
+                type="text"
+                id="searchBar"
+                placeholder="Search.."
+                oninput="onInputFunction(this)"
+              />
+            </div>
 
+  
         <div id="contact-list">
           <!-- Contacts will go here -->
         </div>

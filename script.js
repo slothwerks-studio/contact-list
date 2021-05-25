@@ -246,6 +246,32 @@ function uuid(){
   return uuid;
 }
 
+
+//Function used to search when using the search bar, using 'oninput' because it works on change events (so you can copy and paste, etc!)
+function onInputFunction(searchInput) {
+  //taking the Input and putting it all the lowerCase so the search engine is not case sensitive
+  var searchInput=searchInput.value.toLowerCase();
+  // Function that changes the data to lowerCase and then finds the data that matches
+  var filteredContacts = contacts.filter((contacts) => {
+    return (
+      contacts.name.toLowerCase().includes(searchInput) ||
+      contacts.phone.includes(searchInput)
+    );
+  });
+    // running it through a function that will display the found data
+    displayFoundContacts(filteredContacts);
+    console.log(searchInput);
+    console.log(filteredContacts);
+  }
+
+
+//Function used to display the search results 
+function displayFoundContacts(filteredContacts) {
+    contacts = filteredContacts;
+    refreshContacts() 
+  }
+
+
 // Load data fron localStorage on load
 retrieveLocalStorage();
 // Refresh UI on load
