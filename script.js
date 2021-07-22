@@ -197,26 +197,33 @@ function refreshContacts() {
       // Create a new element for contact
       const contactElement = document.createElement("div");
       // Add class to contact element
-      contactElement.classList.add("contact");
+      contactElement.classList.add("card");
       // Add ID to contact element
       contactElement.id = contact.id;
       // Build HTML for contact
       contactElement.innerHTML = `
-        <a class="contact-link" href="tel:+1${contact.phone}">${contact.name}</a>
-        <button 
-          type="button"
-          class="contact-option-button"
-          onclick="handleUpdateContact('${contact.id}')"
-        >
-          [update]
-        </button>
-        <button 
-          type="button"
-          class="contact-option-button"
-          onclick="handleRemoveContact('${contact.id}')"
-        >
-          [remove]
-        </button>
+      <div class="card-body">
+        <p class="card-text">
+          ${contact.name}
+        </p>
+        <div class="card-options">
+          <a class="btn btn-primary" href="tel:+1${contact.phone}">Call</a>
+          <button 
+            type="button"
+            class="btn btn-primary"
+            onclick="handleUpdateContact('${contact.id}')"
+          >
+            Update
+          </button>
+          <button 
+            type="button"
+            class="btn btn-primary"
+            onclick="handleRemoveContact('${contact.id}')"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
       `;
       // Add the element to the contact list DIV
       contactList.appendChild(contactElement);
