@@ -19,7 +19,7 @@ h1 {
 
 main {
   box-sizing: border-box;
-  max-width: 320px;
+  /* max-width: 320px; */
   padding: 15px;
   margin: 0 auto;
 }
@@ -80,7 +80,18 @@ button {
   align-items: center;
 }
 
+@media screen and (min-width: 768px) {
+  #contact-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
 .contact {
+  border: 1px black solid;
+  border-radius: 5px;
+  padding: 10px;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
