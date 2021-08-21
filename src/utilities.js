@@ -10,3 +10,11 @@ export function uuid(){
   });
   return uuid;
 }
+
+// Build a function that will test a phone number for a desired pattern
+// Returns a boolean value based on whether the phone number passes the test
+export function testPhone(phone) {
+  const phoneRegEx = /[0-9]{10}/;
+  const testResult = phoneRegEx.test(phone);
+  return testResult;
+}
