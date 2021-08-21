@@ -82,6 +82,13 @@ function App() {
     );
   });
 
+  // Build dynamic content for UI based on form mode
+  const formLabel = `${form.mode} Contact`;
+  let cancelButtonClass = "";
+  if (form.mode === "Add") {
+    cancelButtonClass = "hidden";
+  }
+
   return (
     <Fragment>
       <header>
@@ -98,7 +105,7 @@ function App() {
         <section>
 
           <h2 id="form-heading">
-            {/* Heading content determined by JS */}
+            { formLabel }
           </h2>
 
           <form id="contact-form">
@@ -131,11 +138,12 @@ function App() {
                 id="submit-button" 
                 type="submit"
               >
-                {/* Button content determined by JS */}
+                { formLabel }
               </button>
               <button
                 id="cancel-button"
                 type="button"
+                className={cancelButtonClass}
               >
                 Cancel
               </button>
