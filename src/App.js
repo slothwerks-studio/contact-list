@@ -1,17 +1,25 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useRef, useEffect } from 'react';
 import { retrieveLocalStorage, updateLocalStorage } from './storage';
 import { uuid, testPhone } from './utilities';
 
 function App() {
 
   // Set initial state
+  // Updating these will result in UI updates automatically
+  // https://reactjs.org/docs/hooks-state.html
   const [contacts, setContacts] = useState([]);
-  const [contactToEdit, setContactToEdit] = useState(null);
   const [form, setForm] = useState({
     mode: "Add",
     name: "",
     phone: ""
   })
+
+  // Create references
+  // Updating these do not result in UI updates
+  // https://reactjs.org/docs/hooks-reference.html#useref
+  const contactToEdit = useRef(null);
+  const nameInputRef = useRef();
+  const phoneInputRef = useRef();
 
   // On load, retrieve contacts from storage
   useEffect(() => {
@@ -29,7 +37,7 @@ function App() {
       return contact.id === id;
     });
     // Update contactToEdit with contact data
-    setContactToEdit(contact);
+    contactToEdit.current = contact;
     // Update form values
     setForm({
       mode: "Update",
@@ -123,7 +131,7 @@ function App() {
       } else if (form.mode === "Update") {
         // Build updated object
         const updatedContact = {
-          id: contactToEdit.id,
+          id: contactToEdit.current.id,
           name: form.name,
           phone: form.phone
         };
@@ -131,25 +139,35 @@ function App() {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
         const contactIndex = contactsUpdate.findIndex(function (contact) {
           // Return the index of the contact with the ID matching the selected contact ID
-          return contact.id === contactToEdit.id;
+          return contact.id === contactToEdit.current.id;
         });
         // Swap old contact data in contacts array with new data
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
         contactsUpdate.splice(contactIndex, 1, updatedContact);
-        // Clear contactToEdit
-        setContactToEdit(null);
       }
       // Update contacts in state
       setContacts(contactsUpdate);
       // Reset form
-      setForm({
-        mode: "Add",
-        name: "",
-        phone: ""
-      });
+      resetForm();
       // Update localStorage with changes
       updateLocalStorage(contactsUpdate);
     }
+  }
+
+  // Build function which resets the form
+  function resetForm() {
+    // Reset contactToEdit
+    contactToEdit.current = null;
+    // Reset form data
+    setForm({
+      mode: "Add",
+      name: "",
+      phone: ""
+    });
+    // "Blur" inputs
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/blur
+    nameInputRef.current.blur();
+    phoneInputRef.current.blur();
   }
 
   // Use map to go through the contacts array and return contact cards for the UI
@@ -178,9 +196,17 @@ function App() {
 
   // Build dynamic content for UI based on form mode
   const formLabel = `${form.mode} Contact`;
-  let cancelButtonClass = "";
-  if (form.mode === "Add") {
-    cancelButtonClass = "hidden";
+  let cancelButton = null;
+  if (form.mode === "Update") {
+    cancelButton = (
+      <button
+        id="cancel-button"
+        type="button"
+        onClick={resetForm}
+      >
+        Cancel
+      </button>
+    );
   }
 
   return (
@@ -208,6 +234,7 @@ function App() {
                 Name
               </label>
               <input
+                ref={nameInputRef}
                 name="name"
                 type="text"
                 value={form.name}
@@ -221,6 +248,7 @@ function App() {
                 Phone
               </label>
               <input
+                ref={phoneInputRef}
                 name="phone"
                 type="text"
                 value={form.phone}
@@ -236,13 +264,7 @@ function App() {
               >
                 { formLabel }
               </button>
-              <button
-                id="cancel-button"
-                type="button"
-                className={cancelButtonClass}
-              >
-                Cancel
-              </button>
+              { cancelButton }
             </div>
           </form>
 
