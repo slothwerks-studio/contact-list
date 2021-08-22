@@ -58,7 +58,7 @@ Yarn makes this super-easy.  Just execute `yarn` from the command line in the ro
 Once you've installed the packages from the root directory, execute `yarn start` from the command line.  Once the server is up and running, you can access a live preview at [http://localhost:3000](http://localhost:3000).  Similar to Live Server in Visual Studio Code, anytime you make changes to the project, the server will reload and reflect those changes.
 
 #### 4. Build a production version of the app
-You can execute `yarn build` to create a version of the app that can be viewed in the browser without the use of the live server.  Just open the `index.html` file within the resulting `build` folder once the building process is complete.
+You can execute `yarn build` to create a version of the app that can be deployed to a hosting provider.  Once complete, the files can be found in a `build` folder off of the root directory.  [You can check out a live preview here](https://contacts.slothwerks.com/).
 
 ### I know a little HTML and CSS, but I don't know anything about JavaScript.  Help!
 We got your back!  Sloth discussed the basic concepts of JavaScript and walked through the initial code at [GRWebDev](https://www.meetup.com/grwebdev/) in March of 2021.  You can check out the [video of his presentation](https://www.facebook.com/182139175163955/videos/455547239117005) on Facebook.  We will continue to work on the code throughout a number of events sponsored by GRWebDev and [SlothWerks](https://slothwerks.com/).
