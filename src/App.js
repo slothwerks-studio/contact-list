@@ -216,7 +216,7 @@ function App() {
           My Contacts
         </h1>
         <p className="version-number">
-          ver. 0.3.3
+          ver. 1.0.0
         </p>
       </header>
 
