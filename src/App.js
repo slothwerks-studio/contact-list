@@ -22,7 +22,7 @@ function App() {
   const phoneInputRef = useRef();
 
   // On load, retrieve contacts from storage
-  useEffect(() => {
+  useEffect(function() {
     const contactsInStorage = retrieveLocalStorage();
     // Update app state with retrieved data
     setContacts(contactsInStorage);
@@ -174,7 +174,7 @@ function App() {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
   const contactList = contacts.map(function (contact) {
     return (
-      <div className="contact">
+      <div className="contact" key={contact.id}>
         <a className="contact-link" href={`tel:+1${contact.phone}`}>{contact.name}</a>
           <button 
             type="button"
@@ -239,7 +239,7 @@ function App() {
                 type="text"
                 value={form.name}
                 placeholder="Contact name"
-                maxlength="50"
+                maxLength="50"
                 onChange={handleNameUpdate}
               />
             </div>
