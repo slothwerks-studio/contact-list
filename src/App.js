@@ -17,7 +17,7 @@ function App() {
   // Create references
   // Updating these do not result in UI updates
   // https://reactjs.org/docs/hooks-reference.html#useref
-  const contactToEdit = useRef(null);
+  const contactToEditRef = useRef(null);
   const nameInputRef = useRef();
   const phoneInputRef = useRef();
 
@@ -37,7 +37,7 @@ function App() {
       return contact.id === id;
     });
     // Update contactToEdit with contact data
-    contactToEdit.current = contact;
+    contactToEditRef.current = contact;
     // Update form values
     setForm({
       mode: "Update",
@@ -131,7 +131,7 @@ function App() {
       } else if (form.mode === "Update") {
         // Build updated object
         const updatedContact = {
-          id: contactToEdit.current.id,
+          id: contactToEditRef.current.id,
           name: form.name,
           phone: form.phone
         };
@@ -139,7 +139,7 @@ function App() {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
         const contactIndex = contactsUpdate.findIndex(function (contact) {
           // Return the index of the contact with the ID matching the selected contact ID
-          return contact.id === contactToEdit.current.id;
+          return contact.id === contactToEditRef.current.id;
         });
         // Swap old contact data in contacts array with new data
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
@@ -157,7 +157,7 @@ function App() {
   // Build function which resets the form
   function resetForm() {
     // Reset contactToEdit
-    contactToEdit.current = null;
+    contactToEditRef.current = null;
     // Reset form data
     setForm({
       mode: "Add",
