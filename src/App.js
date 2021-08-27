@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useRef, useEffect } from 'react';
 import { retrieveLocalStorage, updateLocalStorage } from './storage';
 import { uuid, testPhone } from './utilities';
+import ContactCard from './components/ContactCard';
 
 function App() {
 
@@ -173,25 +174,12 @@ function App() {
   // Use map to go through the contacts array and return contact cards for the UI
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
   const contactList = contacts.map(function (contact) {
-    return (
-      <div className="contact" key={contact.id}>
-        <a className="contact-link" href={`tel:+1${contact.phone}`}>{contact.name}</a>
-          <button 
-            type="button"
-            className="contact-option-button"
-            onClick={() => handleUpdateContact(contact.id)}
-          >
-            [update]
-          </button>
-          <button 
-            type="button"
-            className="contact-option-button"
-            onClick={() => handleRemoveContact(contact.id)}
-          >
-            [remove]
-        </button>
-      </div>
-    );
+    return <ContactCard 
+      key={contact.id}
+      contact={contact}
+      handleUpdateContact={handleUpdateContact}
+      handleRemoveContact={handleRemoveContact}
+    />
   });
 
   // Build dynamic content for UI based on form mode
